@@ -1,14 +1,4 @@
-'''
-    This is a demo file to be replaced by the researcher as required.
-    This file is imported by trial.py and trial.py will call:
-    start()
-    step()
-    render()
-    reset()
-    close()
-    These functions are mandatory. This file contains minimum working versions
-    of these functions, adapt as required for individual research goals.
-    '''
+
 
 import gym
 import time
