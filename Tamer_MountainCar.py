@@ -8,6 +8,9 @@ import itertools
 
 #This is the code for tile coding features
 #Rich Sutton tile coding code below
+#you probably have to pip install basehash
+
+basehash = hash
 class IHT:
     "Structure to handle collisions"
     def __init__(self, sizeval):
