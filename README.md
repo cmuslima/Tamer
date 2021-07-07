@@ -1,6 +1,5 @@
-# Tamer
+TAMER agent in the Lava World (grid world) environment.
 
-TAMER agent with Tile Coding 
-Integrated into HIPPO Gym framework
+Intergrated within the HIPPO Gym framework.
 
-Work in progress
+Work in progress.
