@@ -1,7 +1,5 @@
+#This is the agent functions that are needed for the HIPPOGym framework. I call the Tamer agent functions within these provided functions. 
 
-
-
-import gym
 import time
 import numpy as np
 import itertools
