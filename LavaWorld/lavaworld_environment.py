@@ -1,3 +1,5 @@
+#Basic set up for the Lava World environment. 
+
 import random
 import numpy as np
 class grid():
