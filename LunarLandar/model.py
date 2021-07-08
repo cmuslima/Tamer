@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-#this is the neural network representing H hat. 
+#this is the neural network for the DQN and for TAMER. 
 class QNetwork(nn.Module):
     """Actor (Policy) Model."""
 
