@@ -1,4 +1,5 @@
-
+#Same as the run.py 
+#this just runs the code with multiple cores 
 import gym
 import random
 import torch
