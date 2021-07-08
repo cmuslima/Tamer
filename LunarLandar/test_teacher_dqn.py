@@ -1,3 +1,5 @@
+#this just made sure my teacher and student were interacting correctly.. not necessary 
+
 import gym
 import random
 import torch
