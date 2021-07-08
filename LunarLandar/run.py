@@ -1,3 +1,4 @@
+#currently, this run.py is using uniform advising. 
 
 import gym
 import random
