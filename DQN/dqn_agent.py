@@ -3,7 +3,7 @@
 """
 Created on Sat Feb  6 13:18:53 2021
 
-@author: kerrick
+@author: kerrick, callie
 """
 import random
 
