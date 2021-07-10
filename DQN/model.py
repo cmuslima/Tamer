@@ -3,7 +3,7 @@
 """
 Created on Sat Feb  6 13:20:34 2021
 
-@author: kerrick
+@author: kerrick, callie
 """
 import torch
 import torch.nn as nn
