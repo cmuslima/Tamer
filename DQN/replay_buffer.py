@@ -3,7 +3,7 @@
 """
 Created on Sat Feb  6 13:21:30 2021
 
-@author: kerrick
+@author: kerrick, callie
 """
 import random
 from collections import namedtuple, deque
