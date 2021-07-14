@@ -32,8 +32,8 @@ class Trial():
         self.filename = None
         self.path = None
         self.reward = 'None'
-        self.budget_used = 0
-        self.budget_used_0 = 0
+
+        self.time_step = 0
         self.start()
         self.run()
 
@@ -46,7 +46,7 @@ class Trial():
         returned. 
         '''
         self.trial = agent.start(self.config.get('game'))
-
+    
     def run(self):
         '''
         This is the main event controlling function for a Trial. 
@@ -81,14 +81,16 @@ class Trial():
             
             self.end()
         else:
-            agent.reset(self.trial)
+            #agent.reset(self.trial)
+            agent.reset() #new changes
+            self.time_step = 0 
             if self.outfile:
                 self.save_entry()
                 self.outfile.close()
                 if self.config.get('s3upload'):
                     self.pipe.send({'upload':{'projectId':self.projectId ,'userId':self.userId,'file':self.filename,'path':self.path, 'bucket': self.config.get('bucket')}})
             self.create_file()
-            self.budget_used_0 = self.budget_used
+            #self.budget_used_0 = self.budget_used
             self.episode += 1
 
     def check_trial_done(self):
@@ -105,7 +107,7 @@ class Trial():
         whole trial memory in self.record, uncomment the call to self.save_record()
         to write the record to file before closing.
         '''
-        agent.close(self.trial)
+        agent.close(self.trial) #changes need to be made here
         if self.config.get('dataFile') == 'trial':
             self.save_record()
         if self.outfile:
@@ -167,13 +169,10 @@ class Trial():
         
         
         elif command == 'good':
-            self.budget_used += 1
+           #self.budget_used += 1
             self.reward = 'good'
-        elif command == 'reallygood':
-            self.budget_used += 1
-            self.reward = 'reallygood'
         elif command == 'bad':
-            self.budget_used += 1
+            #self.budget_used += 1
             self.reward = 'bad'
             
 
@@ -228,7 +227,7 @@ class Trial():
         Translates the npArray into a jpeg image and then base64 encodes the 
         image for transmission in json message.
         '''
-        render = agent.render(self.trial)
+        render = agent.render(self.trial) #changes will be made here
         try:
             img = Image.fromarray(render)
             fp = BytesIO()
@@ -271,24 +270,17 @@ class Trial():
         if self.actionBuffer >= self.config.get('actionBufferLifespan'):
             self.humanAction = 0
             self.actionBuffer = 0
-        envState = agent.step(self.trial, self.reward)
+        envState = agent.step(self.trial, self.reward, self.episode)
         self.actionBuffer +=1
-        if envState['updated']:  # was 'done'
-            update_dict = {'w'+str(self.budget_used):envState['w']}
-            update_dict.update({'cumulative_budget_used': self.budget_used})
-            self.update_entry(update_dict)  # uncomment to save data only at end of episode
-            
+        self.time_step +=1
+
+    
+        update_dict = {'episode_number_' + str(self.episode) + '_time_step_' + str(self.time_step): envState}
+        self.update_entry(update_dict)
         if envState['done']:  
-            update_dict = {'w'+str(self.budget_used):envState['w']}
-            update_dict.update({'cumulative_budget_used': self.budget_used})
-            update_dict.update({'dR':self.budget_used-self.budget_used_0})
-            update_dict.update({'steps':envState['step']})
-            self.update_entry(update_dict)  # uncomment to save data only at end of episode
-            
+
             self.reset()
         
-
-
     def save_entry(self):
         '''
         Either saves step memory to self.record list or pickles the memory and
