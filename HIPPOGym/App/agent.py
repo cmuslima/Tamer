@@ -16,6 +16,11 @@ import random
 import numpy as np
 from deeptameragent import TamerAgent
 
+
+"""
+This is a generic agent class which is called by the the HIPPO Gym backend, in trial.py.
+This agent class instantiates the TamerAgent class. The TamerAgent contains the learning update code, etc """
+
 class Agent():
     '''
     Use this class as a convenient place to store agent state.
