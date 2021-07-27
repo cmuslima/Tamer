@@ -1,5 +1,3 @@
-TAMER agent in the Lava World (grid world) environment and Lunar Lander.
-
 Lunar Lander Directory: Deep TAMER agent in Lunar Lander is not integrated with HIPPO Gym yet. TAMER is receiving feedback from an expert RL agent (no human in the loop)
 
 Lava World Directory: Work in Progress, trying to get a complete integrate of the LAVA world environment in HIPPO Gym. 
