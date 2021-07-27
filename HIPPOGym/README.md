@@ -1,3 +1,40 @@
+Callie's basic HIPPO Gym instructions for running TAMER agent in HIPPO Gym on local machine:
+
+To run lock/key environment:
+
+Need to first install mini-grid environment
+
+https://github.com/maximecb/gym-minigrid
+
+pip3 install gym-minigrid
+
+
+For HIPPO Gym:
+
+Pull the HIPPO Gym repo
+Download AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+Cd into the HIPPO Gym directory
+Run python3 updateProject.py in the terminal. This will ask if you run to deploy docker? Type N (no)
+Cd into App
+Run python3 communicator.py dev in the terminal 
+In your browser, go to https://testing.irll.net/?server=ws://localhost:5000 This will allow you to see the live game and interact with it. 
+
+In the config file is where you can change the game speed by changing this section:
+
+  frameRateStepSize: 1 # int Optional if allowFrameRateChange = False
+  minFrameRate: 1 # int Optional if allowFrameRateChange = False
+  maxFrameRate: 1 # int Optional if allowFrameRateChange = False
+  allowFrameRateChange: False # bool
+  startingFrameRate: 1  # int Required 
+
+
+For the Lock/Key: I have it going really slow for now, which is why the frame rate is 1. 
+
+
+
+Below is the officical HIPPO Gym instructions:
+
+
 # HIPPO Gym 
 ##### Human Input Parsing Platform for Openai Gym
 
