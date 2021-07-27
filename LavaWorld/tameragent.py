@@ -1,4 +1,4 @@
-#this is the tamer agent class. The main functions are the step and act function which is how the agent traverses the environment.
+#this is the tamer agent class
 import numpy as np 
 import random
 class TamerAgent:
@@ -25,6 +25,7 @@ class TamerAgent:
         self.last_state= None
         self.current_action = [None,None]
         self.current_state= None
+        self.num_feedback = 0
 
     
         self.start_state= None

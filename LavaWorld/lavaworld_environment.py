@@ -1,7 +1,6 @@
-#Basic set up for the Lava World environment. 
-
 import random
 import numpy as np
+from fixed_traj import trajectories
 class grid():
     def __init__(self):       
         self.start_state= np.array([0,0])  #target start state       
@@ -14,10 +13,8 @@ class grid():
         self.down=np.array([1, 0]) # 1
         self.left=np.array([0, -1]) # 2
         self.right=np.array([0, 1])  #3
-
-        
         self.action_list=[(self.up, 0),(self.down, 1), (self.left,2), (self.right, 3)]
-
+        self.action_sequence = [(1,1,1,1,1,3,3,3,3,3,3,3,3)]
 
     def check_reward(self, state):
         terminal= False
@@ -38,3 +35,20 @@ class grid():
             next_state = state 
             
         return next_state
+    
+    def act(self, episode_number, time_step):
+        return self.action_sequence[episode_number][time_step]
+
+    def step(self, state, action_movement, env): #should return next_state, reward, done
+                
+    
+        next_state= action_movement + state #this applies the action and moves to the next state 
+        
+        next_state = env.check_state(next_state, state) #this checks whether the state is hitting a blocked state
+                                            # or if the state is hitting the edge, if so the next_state
+                                            # is the original state
+        
+        done = env.check_reward(next_state)
+        
+
+        return next_state, done
