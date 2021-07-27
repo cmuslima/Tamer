@@ -17,7 +17,7 @@ Cd into the HIPPO Gym directory
 Run python3 updateProject.py in the terminal. This will ask if you run to deploy docker? Type N (no)
 Cd into App
 Run python3 communicator.py dev in the terminal 
-In your browser, go to https://testing.irll.net/?server=ws://localhost:5000 This will allow you to see the live game and interact with it. 
+In your browser, go to https://irll.net/?server=ws://localhost:5000 This will allow you to see the live game and interact with it. 
 
 In the config file is where you can change the game speed by changing this section:
 
