@@ -87,14 +87,3 @@ class grid(gym.Env):
         img = self.fill_square(self.termination_state[0],self.termination_state[1],COLORS['green'],img)
 
         return img
-
-
-
-a = 12
-
-myenv = grid()
-import matplotlib.pyplot as plt
-plt.figure()
-#plt.imshow(np.zeros((3,3)))
-plt.imshow(myenv.render())
-plt.show()
