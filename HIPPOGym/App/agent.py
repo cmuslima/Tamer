@@ -41,7 +41,7 @@ class Agent():
         self.eps = 1
         self.env = make_env(game, seed)
 
-        self.tameragent= TamerAgent(state_size=147, action_size=3, seed=0)
+        self.tameragent= TamerAgent(state_size=147, action_size=6, seed=0)
         return self.env
 
     def update_agent(self, reward):
