@@ -1,0 +1,81 @@
+project:
+  useAWS: True 
+  awsSetup:
+    bucket: projects.irll # working bucket in AWS
+    region: ca-central-1 # working AWS region
+    rootDomain: irll.net # a fully qualified domain name without 'https://'
+    cpu: 2 # int 1,2, or 4
+    memory: 10 # int 1-30
+
+  events:
+    startServerStep: 1 # int ? #this
+    stopServerStep: 8  # int ?
+  id: testingdeeptamer # Letters, Numbers and '-' only! #only lower case #change this
+  live: True # bool
+  maxRuntime: 20 # int in minutes.
+  name: testingdeeptamer # str #change this 
+  researcher: Callie Muslimani
+  ssl:
+    fullchain: SSL/fullchain.pem # path to fullchain.pem file excluding bucket name
+    privkey: SSL/privkey.pem # path to privkey.pem file excluding bucket name
+    sslBucket: projects.irll # bucket name for resolving paths above
+
+  steps: #in the step file folder # any number of steps needed with corresponding filenames
+    1: exampleConsent.html
+    2: game
+    3: exampleThank.html
+    #2: game
+    #finalStep:  #put the file name of the last step again here # required, filename can be same as last numbered step
+  teamMembers: Callie # str
+trial:
+  actionBufferLifespan: 0 # int ? #maybe 1 and 3
+  maxEpisodes: 10 # int 
+  game: MiniGrid-DoorKey-5x5-v0 # full environment name
+  dataFile: episode # episode or trial
+  s3upload: True #maybe turn this into False
+  actionSpace: # the appropriate action space for environment. Order matters
+    #- noop
+    #- up
+    #- right
+    #- left
+    #- down
+    #- upright
+    #- upleft
+    #- downright
+    #- downleft
+    #- AccelerateLeft #0
+    #- noaccelerate #1
+    #- AccelerateRight #2
+
+    #- left
+    #- do_nothing
+    #- right
+    - left
+    - right
+    - forward
+    - #pickup
+    - #drop
+    - #toggle
+
+  frameRateStepSize: 5 # int Optional if allowFrameRateChange = False
+  minFrameRate: 1 # int Optional if allowFrameRateChange = False
+  maxFrameRate: 10 # int Optional if allowFrameRateChange = False
+  allowFrameRateChange: False # bool
+  startingFrameRate: 10  # int Required #may need to change  #10 for cartpole
+  ui: # to include ui button set to True, False buttons will not be shown
+    left: False
+    right: False
+    up: False
+    down: False
+    start: True
+    stop: True
+    pause: True
+    reset: True
+    trainOffline: False
+    trainOnline: False
+    good: True
+    bad: True
+    reallygood: False
+    fpsSet: False
+    fpsUp: False
+    fpsDown: False
