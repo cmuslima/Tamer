@@ -30,7 +30,7 @@ project:
 trial:
   actionBufferLifespan: 0 # int ? #maybe 1 and 3
   maxEpisodes: 10 # int 
-  game: MiniGrid-LavaGapS5-v0 #MiniGrid-DoorKey-5x5-v0 # full environment name
+  game: MiniGrid-DoorKey-5x5-v0 # full environment name
   dataFile: episode # episode or trial
   s3upload: True #maybe turn this into False
   actionSpace: # the appropriate action space for environment. Order matters
