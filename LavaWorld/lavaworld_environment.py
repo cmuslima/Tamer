@@ -9,7 +9,9 @@ COLORS = {
     'blue'  : np.array([0, 0, 255]),
     'purple': np.array([112, 39, 195]),
     'yellow': np.array([255, 255, 0]),
-    'grey'  : np.array([100, 100, 100])
+    'grey'  : np.array([100, 100, 100]),
+    'white' : np.array([255, 255, 255]),
+    'black' : np.array([0, 0, 0])
 }
 
 class grid(gym.Env):
@@ -77,13 +79,24 @@ class grid(gym.Env):
 
         img = np.zeros(shape=(height_px, width_px, 3), dtype=np.uint8)
         # Color background grey
-        img[:,:,:] = COLORS['grey']
-        # Color lava red
-        for lava in self.blocked_states:
-            img = self.fill_square(lava[0], lava[1], COLORS['red'], img) 
+        img[:,:,:] = COLORS['white']
+
         # Color agent blue
         img = self.fill_square(self.agent_state[0],self.agent_state[1], COLORS['blue'],img)
         # Color goal state green
         img = self.fill_square(self.termination_state[0],self.termination_state[1],COLORS['green'],img)
 
+
+        # Draw lines in grid
+        row_ticks = list(range(1,self.rows))
+        col_ticks = list(range(1,self.columns))
+        for r in row_ticks:
+            img[r*self.tile_size,:] = COLORS['black']
+        for c in col_ticks:
+            img[:,c*self.tile_size] = COLORS['black']
+        
+        # Color lava red
+        for lava in self.blocked_states:
+            img = self.fill_square(lava[0], lava[1], COLORS['red'], img) 
+        
         return img
