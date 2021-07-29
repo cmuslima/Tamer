@@ -143,6 +143,21 @@ class TamerAgent:
             target = -1
             #print('wrong action')
  
+#below is credit assignment with time
+        '''current_time = time.time()
+        while len(self.experiences) > 0:
+            experience = self.experiences[0]
+            
+            #diff= current_time-experience[2]
+
+            #if (diff < .2 or diff > 2):
+            
+            if experience[2] < current_time - self.window_size: #
+                self.experiences.pop(0)
+            
+            else:
+                break'''
+
 
     # update weights using Algorithm 1 in paper
         n_experiences = len(self.experiences)
