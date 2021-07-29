@@ -108,7 +108,7 @@ class TamerAgent:
             Returns:
             The first action the agent takes.
             """
-        #print('state again', state)
+
         self.state=state
         position, velocity = state
         
@@ -116,7 +116,7 @@ class TamerAgent:
         
         self.current_action = np.random.choice(self.actions)
         self.current_tiles= np.copy(active_tiles)
-        #print('first set of tiles', self.current_tiles)
+
         self.update_experiences(self.current_tiles,self.current_action)
         
         return self.current_action
@@ -128,7 +128,6 @@ class TamerAgent:
         
         self.experiences.append((tiles, action)) # now we add in the newest one to the buffer
 
-        #print('current state of experiences buffer', self.experiences)
     
 
     def update_reward(self, artificial_agent):
@@ -136,9 +135,7 @@ class TamerAgent:
         active_tiles_artifical = artificial_agent.mctc.get_tiles(position, velocity)
     
         artifical_action, artifical_action_values= artificial_agent.select_action(active_tiles_artifical)
-        #print('this is the latest action', self.last_action)
 
-        #if teacher_feedback:
         if artifical_action==self.last_action:
             target = 1
             #print('right action')
@@ -153,11 +150,10 @@ class TamerAgent:
         if n_experiences== 0:
             return
         weight_per_experience = 1.0/n_experiences
-        #weight_per_experience = rest_weight/(n_experiences)
 
         cred_features = np.zeros((self.num_actions, self.iht_size))
             
-        #count = 1
+  
         for experience in self.experiences:
             
             exp_features= np.zeros((self.num_actions, self.iht_size))
@@ -165,9 +161,7 @@ class TamerAgent:
             action = experience[1]
             tile = experience[0]
             exp_features[action][tile]=1
-            #if count == n_experiences:
-                #exp_features*=magority_weight
-            #else: 
+
             exp_features*=weight_per_experience
 
             cred_features = np.add(cred_features, exp_features)
