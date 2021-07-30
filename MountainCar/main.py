@@ -9,7 +9,7 @@ def main(budget, uniform_value, credit_assignment_value):
     print('The teacher will provide feedback every ', uniform_value, ' time steps')
     print('The credit assignment value is:', credit_assignment_value)
     
-    num_runs = 15
+    num_runs = 1
     num_episodes = 100
 
     run_steps =[]
@@ -21,15 +21,20 @@ def main(budget, uniform_value, credit_assignment_value):
         run_steps.append(scores)
         eval_score_per_run.append(np.array(evaluation_scores))
 
-    average_evaluation_scores = [np.mean(eval_score_per_run, axis=0), np.std(eval_score_per_run, axis=0)]
+    #This is the data we are saving.
+    #This is a list with 3 componenets 
+    #1. The credit assignment value
+    #2. The average performance of the student agent
+    #3. The standard deviation of the performance 
+    average_evaluation_scores = [ 'creditvalue '+str(credit_assignment_value),np.mean(eval_score_per_run, axis=0), np.std(eval_score_per_run, axis=0)]
 
+
+    #This is how we save the data to a file 
     model_name = 'average_eval_scores' + 'b_'+ str(budget) + 'uniform_'+str(uniform_value) + 'credit_assignment_value' + str(credit_assignment_value) + '.pkl'
     with open(model_name,'wb') as output:
         pickle.dump(average_evaluation_scores, output)
     
-    #model_name = 'raw_eval_scores' + 'b_'+ str(b) + 'uniform_'+str(threshold) + 'max_update' + str(max_updates)+ '.pkl'
-    #with open(model_name,'wb') as output:
-        #pickle.dump(run_steps, output)
+
 
 
     return average_evaluation_scores
