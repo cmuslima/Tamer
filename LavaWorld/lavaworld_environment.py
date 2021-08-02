@@ -72,7 +72,22 @@ class grid(gym.Env):
     def fill_square(self, row, col, color, img):
         img[row*self.tile_size:(row+1)*self.tile_size,col*self.tile_size:(col+1)*self.tile_size] = color
         return img
-        
+    
+    def l2_dist(self, point1, point2):
+        xdist = point1[1]-point2[1]
+        ydist = point1[0]-point2[0]
+        return np.sqrt(xdist**2 + ydist**2)
+
+    def fill_circle(self, row, col, color, img):
+        center = (row*self.tile_size+self.tile_size//2, col*self.tile_size+self.tile_size//2)
+        rad = self.tile_size//3
+        for r in range(row*self.tile_size, (row+1)*self.tile_size):
+            for c in range(col*self.tile_size, (col+1)*self.tile_size):
+                if self.l2_dist((r,c),center) < rad:
+                    img[r,c] = color
+        return img
+
+
     def render(self):
         width_px = self.columns * self.tile_size
         height_px = self.rows * self.tile_size
@@ -82,11 +97,16 @@ class grid(gym.Env):
         img[:,:,:] = COLORS['white']
 
         # Color agent blue
-        img = self.fill_square(self.agent_state[0],self.agent_state[1], COLORS['blue'],img)
+        img = self.fill_circle(self.agent_state[0],self.agent_state[1], COLORS['blue'],img)
         # Color goal state green
         img = self.fill_square(self.termination_state[0],self.termination_state[1],COLORS['green'],img)
 
 
+        
+        
+        # Color lava red
+        for lava in self.blocked_states:
+            img = self.fill_square(lava[0], lava[1], COLORS['red'], img) 
         # Draw lines in grid
         row_ticks = list(range(1,self.rows))
         col_ticks = list(range(1,self.columns))
@@ -94,9 +114,16 @@ class grid(gym.Env):
             img[r*self.tile_size,:] = COLORS['black']
         for c in col_ticks:
             img[:,c*self.tile_size] = COLORS['black']
-        
-        # Color lava red
-        for lava in self.blocked_states:
-            img = self.fill_square(lava[0], lava[1], COLORS['red'], img) 
-        
         return img
+
+
+# debug code
+
+#myenv = grid()
+#import matplotlib.pyplot as plt
+#plt.figure()
+#plt.imshow(myenv.render())
+#plt.show()
+#myenv.step(myenv.down)
+#plt.imshow(myenv.render())
+#plt.show()
