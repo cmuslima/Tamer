@@ -1,0 +1,52 @@
+<style>
+p {
+	font-size: 20px;
+	padding-top: 10px;
+}
+label {
+	font-size: 18px;
+}
+textarea {
+	resize: both;
+}
+
+</style>
+
+<h1>Post game survey</h1>
+<h2>Please select one answer for each of the following questions.</h2>
+<h2>When you finish the questionnaire, please click "Submit" at the bottom</h2>
+<p>1. Did you understand the rules of Lava World?</p>
+<input type="radio" id="Yes" name="understand" value="Yes">
+<label for="Yes">Yes</label><br>
+<input type="radio" id="Yes" name="understand" value="Somewhat">
+<label for="Somewhat">Somewhat</label><br>
+<input type="radio" id="No" name="understand" value="No">
+<label for="work">No</label><br>
+
+<p>2. Did you find it difficult to provide feedback to the agent during the game?</p>
+<input type="radio" id="Yes" name="helpful" value="Yes">
+<label for="Yes">Yes</label><br>
+<input type="radio" id="Yes" name="helpful" value="Somewhat">
+<label for="Somewhat">Somewhat</label><br>
+<input type="radio" id="No" name="helpful" value="No">
+<label for="work">No</label><br>
+
+<p>3. Were you able to teach the agent to reach the goal in Lava World?</p>
+<input type="radio" id="Yes" name="difficult" value="Yes">
+<label for="Yes">Yes, the agent reached the goal.</label><br>
+<input type="radio" id="Yes" name="difficult" value="Somewhat">
+<label for="Somewhat">The agent almost reached the goal.</label><br>
+<input type="radio" id="No" name="difficult" value="No">
+<label for="work">No, the agent was not close to reaching the goal.</label><br>
+
+<p>4. If we provided you a feedback strategy: a method to provide feedback, do you think that would have been helpful in teaching the agent?</p>
+<input type="radio" id="Yes" name="effective" value="Yes">
+<label for="Yes">Yes, I think that would be helpful.</label><br>
+<input type="radio" id="Yes" name="effective" value="Somewhat">
+<label for="Somewhat">I'm not sure.</label><br>
+<input type="radio" id="No" name="effective" value="No">
+<label for="work">No, I don't think being provided a feedback strategy is necessary.</label><br>
+
+
+<p>5. Any other comments?</p>
+<textarea name="comment" cols=40 rows=5 defaultValue="this is comment"></textarea>
