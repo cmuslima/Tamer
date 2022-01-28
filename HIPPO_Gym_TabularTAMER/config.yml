@@ -1,5 +1,5 @@
 project:
-  useAWS: True 
+  useAWS: False 
   awsSetup:
     bucket: projects.irll # working bucket in AWS
     region: ca-central-1 # working AWS region
@@ -37,7 +37,7 @@ trial:
   maxEpisodes: 20 # int 
   game: Lava_World # full environment name
   dataFile: episode # episode or trial
-  s3upload: True #maybe turn this into False
+  s3upload: False #maybe turn this into False
   actionSpace: # the appropriate action space for environment. Order matters
     #- noop
     #- up
@@ -79,23 +79,6 @@ trial:
     - { x: 0, y: 7 }
     - { x: 1, y: 7 }
     - { x: 2, y: 7 }
-  trajectory: 
-    - { x: 0, y: 0 }
-    - { x: 0, y: 1 }
-    - { x: 0, y: 2 }
-    - { x: 0, y: 3 }
-    - { x: 1, y: 0 }
-    - { x: 1, y: 1 }
-    - { x: 1, y: 3 }
-    - { x: 2, y: 3 }
-    - { x: 3, y: 3 }
-    - { x: 3, y: 4 }
-    - { x: 3, y: 5 }
-    - { x: 3, y: 6 }
-    - { x: 4, y: 6 }
-    - { x: 5, y: 6 }
-    - { x: 5, y: 7 }
-    - { x: 5, y: 8 }
   ui: # to include ui button set to True, False buttons will not be shown
     left: False
     right: False
