@@ -4,20 +4,27 @@ Callie's basic HIPPO Gym instructions for running Tabular TAMER + RL agent in HI
 
 For HIPPO Gym:
 
-Pull the HIPPO Gym repo 
 Download AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html 
-Cd into the HIPPO Gym directory 
 
-Run python3 updateProject.py in the terminal. 
-This will ask if you run to deploy docker? Type N (no) 
-Cd into App 
+Download Docker: https://www.docker.com/pricing
+
+Pull the HIPPO Gym repo. Cd into HIPPO_Gym_TabularTAMER
+
+pip3 install requirements.txt -r
+
+Update the config.yaml file according to your own needs. 
+This repo is ADAPTED for Tabular Tamer, but the generic App folder from
+https://github.com/IRLL/HIPPO_Gym will have all the 'unfilled' out files for you. This will you
+can plug in any agent you want. 
+
+If you want to continue:
+
+Run python3 updateProject.py in the current directory (HIPPO_Gym_TabularTAMER)
+
+Then Cd into App 
 Mkdir Trials (if Trials directory does not exist)
 Run command: python3 communicator.py dev in the terminal 
 In your browser, go to https://irll.net/?server=ws://localhost:5000 This will allow you to see the live game and interact with it.
-
-In the config file is where you can change the game speed by changing this section:
-
-frameRateStepSize: 1 # int Optional if allowFrameRateChange = False minFrameRate: 1 # int Optional if allowFrameRateChange = False maxFrameRate: 1 # int Optional if allowFrameRateChange = False allowFrameRateChange: False # bool startingFrameRate: 1 # int Required
 
 
 #BELOW IS THE OFFICIAL HIPPO GYM INSTRUCTIONS AS PER 
